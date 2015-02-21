@@ -13,17 +13,17 @@ angular.module('birminghamParcourApp')
 
             var checked = JSON.parse('[' + $routeParams.checked + ']');
             var allResults = JSON.parse('[' + $routeParams.results + ']');
+            var layers = {};
 
             $scope.results = getResults(allResults);
 
             leafletData.getMap().then(function (map) {
-                var layers = [];
+
                 $scope.results.forEach(function (result) {
 
-                    layers.push(L.geoJson(createPath(result.path), createStyle('red', map)));
+                    layers[result.id] = L.geoJson(createPath(result.path), createStyle('red', map));
                 });
 
-                layers[0].addTo(map);
             });
 
             function createPath(points) {
@@ -74,9 +74,25 @@ angular.module('birminghamParcourApp')
                     });
                 };
             }
-            //console.log(leafletData.getMap());
+
+            $scope.itemClicked = function (event, id) {
+
+                leafletData.getMap().then(function (map) {
+                    var el = $(event.currentTarget);
+                    var layer = layers[id];
+                    
+                    if (el.hasClass("selected")) {
+                        el.removeClass("selected");
+                        map.removeLayer(layer);
+                    } else {
+                        el.addClass("selected");
+                        layer.addTo(map);
+                    }
+                });
+            }
 
             function getResults(checked) {
+                //will be replaced by api call
                 return [
                     {
                         name: "Trail 1",

@@ -12,7 +12,29 @@ angular.module('birminghamParcourApp')
 
         $scope.results = getResults();
 
+        $scope.showMap = function () {
+            var checkedResults = getCheckedResults();
+            var allResults = $scope.results.map(function (result) {
+                return result.id;
+            });
+            $location.path("/admin/clean").search({
+                checked: checkedResults,
+                results: allResults
+            });
+        }
+
+        function getCheckedResults() {
+            var checked = [];
+
+            $('.result-checkbox:checked').each(function () {
+                checked.push($(this).attr('value'));
+            });
+
+            return checked.join(",");
+        }
+
         function getResults() {
+            //will be replaced by api call
             return [
                 {
                     name: "Trail 1",
@@ -45,24 +67,6 @@ angular.module('birminghamParcourApp')
                     name: "Trail 10",
                     id: 109
                 }];
-        }
-
-        $scope.showMap = function () {
-            var checkedResults = getCheckedResults();
-            var allResults = $scope.results.map(function(result) {
-                return result.id;
-            });
-            $location.path("/admin/clean").search({checked: checkedResults, results: allResults});
-        }
-        
-        function getCheckedResults() {
-            var checked = [];
-            
-            $('.result-checkbox:checked').each(function() {
-                    checked.push($(this).attr('value'));
-            });
-            
-            return checked.join(",");
         }
 
     });

@@ -1,8 +1,8 @@
 <div id="row">
     <div id="resultContainer" class="col-sm-3">
         <ul class="list-group">
-            <li class="list-group-item" ng-repeat="result in results">
-                <input class="result-checkbox" type="checkbox" value="{{result.id}}">{{result.name}}
+            <li class="list-group-item" ng-repeat="result in results" ng-click="itemClicked($event, result.id)">
+                {{result.name}}
             </li>
         </ul>
     </div>
