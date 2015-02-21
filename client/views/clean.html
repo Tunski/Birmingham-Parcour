@@ -1,0 +1,12 @@
+<div id="row">
+    <div id="resultContainer" class="col-sm-3">
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="result in results">
+                <input class="result-checkbox" type="checkbox" value="{{result.id}}">{{result.name}}
+            </li>
+        </ul>
+    </div>
+    <div id="mapContainer" class="col-sm-9">
+        <leaflet defaults="defaults" height="480px" width="640px"></leaflet>
+    </div>
+</div>

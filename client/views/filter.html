@@ -1,0 +1,38 @@
+<div id="row">
+    <div id="filterPanel" class="col-sm-3">
+        Location:
+        <input type="text" class="form-control" placeholder="Latitude">
+        <input type="text" class="form-control" placeholder="Longitude">Filter By:
+        <div class="checkbox">
+            <input type="checkbox">Park
+        </div>
+        <div class="checkbox">
+            <input type="checkbox">Bike
+        </div>
+        <div class="checkbox">
+            <input type="checkbox">Trail
+        </div>
+        Distance
+        <div class="form-group">
+            <select class="form-control">
+                <option>1 mile</option>
+                <option>2 miles</option>
+                <option>5 miles</option>
+                <option>10 miles</option>
+                <option>25 miles</option>
+            </select>
+        </div>
+        <div class="checkbox">
+            <input type="checkbox" value="">Include archived routes
+        </div>
+        <button class="btn btn-primary" style="width:100%">Find Results</button>
+    </div>
+    <div id="resultContainer" class="col-sm-9">
+        <button class="btn btn-success" style="width:100%" ng-click="showMap()">View On Map</button>
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="result in results">
+                <input class="result-checkbox" type="checkbox" value="{{result.id}}">{{result.name}}
+            </li>
+        </ul>
+    </div>
+</div>
