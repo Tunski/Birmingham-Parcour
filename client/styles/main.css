@@ -85,3 +85,22 @@ body {
 .selected {
     background-color: green;
 }
+
+.navbar-toggle-left {
+  position: relative;
+  float: left;
+  padding: 9px 10px;
+  margin-top: 8px;
+  margin-left: 15px;
+  margin-bottom: 8px;
+  background-color: transparent;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.header, .marketing, .footer {
+   padding-left: 0px;
+   padding-right: 0px;
+}
+

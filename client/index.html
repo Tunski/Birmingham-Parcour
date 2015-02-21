@@ -28,12 +28,16 @@
         <div class="container">
           <div class="navbar-header">
 
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+            <button type="button" class="navbar-toggle navbar-toggle-left collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
+
+            <a  class="button navbar-toggle" >
+              <span class="glyphicon glyphicon-search"></span>
+            </a>
 
             <a class="navbar-brand" href="#/">Birmingham Parcour</a>
           </div>
@@ -51,7 +55,7 @@
     </div>
 
     <div class="container">
-    <div ng-view=""></div>
+      <div ng-view=""></div>
     </div>
 
     <div class="footer">
@@ -98,6 +102,7 @@
         <script src="scripts/controllers/filter.js"></script>
         <script src="scripts/controllers/clean.js"></script>
         <script src="scripts/controllers/checkinCtrl.js"></script>
+        <script src="scripts/controllers/searchCtrl.js"></script>
         <!-- endbuild -->
 </body>
 </html>
