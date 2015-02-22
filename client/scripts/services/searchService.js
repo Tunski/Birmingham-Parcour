@@ -17,20 +17,45 @@
 
     return service;
 
-    function searchText(text) {
 
+    function searchText(text) {
+      var locations = [
+        {
+          message: 'Railroad Park',
+          lat: 33.533,
+          lng: -86.8086459
+        },
+        {
+          message: 'Railroad Park 2',
+          lat: 33.522,
+          lng: -86.8086459
+        }
+      ];
       var results = null;
-      results = [];
+      results = locations;
       return $q.when(results);
 
     }
 
     function searchLocation(location){
+      var locations = [
+        {
+          message: 'Railroad Park',
+          lat: 33.533,
+          lng: -86.8086459
+        },
+        {
+          message: 'Railroad Park 2',
+          lat: 33.522,
+          lng: -86.8086459
+        }
+      ];
       var results = null;
-      results = [];
+      results = locations;
 
       return $q.when(results);
     }
+
 
 
   }

@@ -15,6 +15,7 @@
 <div class="row">
   <tabset>
     <tab heading="Map" ng-click="selectTab('map')">
+      <h4>{{searchTitle}}: {{searchText}}</h4>
       <div class="">
         <leaflet center="myLocation" markers="markers" height="400"></leaflet>
       </div>
@@ -23,14 +24,14 @@
       <div>
         <div class="row">
           <div class="col-md-6">
-            <h4>Results: {{searchResults.length}}</h4>
+            <h4>{{searchTitle}}: {{searchText}}</h4>
           </div>
         </div>
         <div class="row">
           <div class="col-md-6">
             <div class="list-group">
-              <a ng-repeat="item in searchResults" ng-click="selectItem(item)" class="list-group-item">
-                {{item}}
+              <a ng-repeat="item in searchListResults" ng-click="selectItem(item)" class="list-group-item">
+                {{item.message}}
               </a>
             </div>
           </div>

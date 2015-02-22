@@ -14,13 +14,14 @@
 angular.module('birminghamParcourApp')
   .controller('searchCtrl', function ($scope,$geolocation,$timeout,searchService) {
 
-    $scope.searchResults = [];
+    $scope.searchListResults = [];
     $scope.searchText = null;
     $scope.markers = {};
     $scope.myLocation = { 'lat': 33.512, 'lng': -86.808, 'zoom': 12 };
     $scope.myCoords = $geolocation.position.coords; // this is regularly updated
     $scope.myError = $geolocation.position.error; // this becomes truthy, and has 'code' and 'message' if an error occurs
 
+    $scope.searchTitle = "Trails Near";
 
     // This is what you will bind the filter to
     $scope.filterText = '';
@@ -85,17 +86,20 @@ angular.module('birminghamParcourApp')
           .then(function(results){
             console.log('search results', results);
             $scope.results = results;
+            loadResultsOnScreen($scope.results);
           });
       }
 
     }
 
     var loadResultsOnScreen = function(results){
-      if($scope.selectedTabName == 'list'){
-        //list
-      } else if ($scope.selectedTabName == 'map') {
-        //map
-      }
+
+        $scope.searchListResults = results;
+
+
+        console.log('asdfasfda');
+        $scope.markers = results;
+
     }
 
     $scope.selectTab = function(selectTab) {
