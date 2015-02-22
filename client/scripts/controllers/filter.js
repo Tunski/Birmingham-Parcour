@@ -10,26 +10,9 @@
 angular.module('birminghamParcourApp')
     .controller('FilterCtrl', function ($scope, $location) {
 
-
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        }
-
-
         function showPosition(position) {
             $('#lat').val(position.coords.latitude);
             $('#long').val(position.coords.longitude);
-        }
-
-        $scope.showMap = function () {
-            var checkedResults = getCheckedResults();
-            var allResults = $scope.results.map(function (result) {
-                return result.id;
-            });
-            $location.path("/admin/clean").search({
-                checked: checkedResults,
-                results: allResults
-            });
         }
 
         function getCheckedResults() {
@@ -41,6 +24,21 @@ angular.module('birminghamParcourApp')
 
             return checked.join(",");
         }
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+
+        $scope.showMap = function () {
+            var checkedResults = getCheckedResults(),
+                allResults = $scope.results.map(function (result) {
+                    return result.id;
+                });
+            $location.path("/admin/clean").search({
+                checked: checkedResults,
+                results: allResults
+            });
+        };
 
         $scope.getResults = function () {
             //will be replaced by api call
@@ -76,6 +74,6 @@ angular.module('birminghamParcourApp')
                     name: "Trail 10",
                     id: 109
                 }];
-        }
+        };
 
     });
