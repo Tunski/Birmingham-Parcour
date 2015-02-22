@@ -30,9 +30,6 @@ angular.module('birminghamParcourApp')
         }
 
       };
-      //data.coords.longitude;
-      //debugger;
-      //console.log('pos',data);
 
     });
 
