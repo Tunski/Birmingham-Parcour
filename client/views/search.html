@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-md-6">
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Find...">
+      <input type="text" class="form-control" placeholder="Find..." ng-model="searchText">
       <span class="input-group-btn">
         <button class="btn btn-default" type="button" ng-click="searchCurrentLocation()">
           <i class="fa fa-location-arrow"></i>
@@ -11,21 +11,39 @@
     </div>
   </div>
 </div>
-
+<br/>
 <div class="row">
-  <div class="col-md-6">
-    <h4>Results: {{searchResults.length}}</h4>
+  <tabset>
+    <tab heading="List">
+      <div ng-show="searchText">
 
-  </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h4>Results: {{searchResults.length}}</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="list-group">
+              <a ng-repeat="item in searchResults" ng-click="selectItem(item)" class="list-group-item">
+                {{item}}
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </tab>
+
+    <tab heading="Map" select="alertMe()">
+      <div class="well">
+        <leaflet center="myLocation" markers="markers" height="300"></leaflet>
+
+      </div>
+
+
+    </tab>
+  </tabset>
 </div>
-<div class="row">
-  <div class="col-md-6">
-
-    <div class="list-group">
-      <a ng-repeat="item in searchResults" href="#" class="list-group-item">
-        {{item}}
-      </a>
-    </div>
-  </div>
-</div>
-
+<br/>

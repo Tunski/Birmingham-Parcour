@@ -18,7 +18,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'leaflet-directive',
-    'ngGeolocation'
+    'ngGeolocation',
+    'ui.bootstrap'
   ])
     .config(function ($routeProvider) {
         $routeProvider

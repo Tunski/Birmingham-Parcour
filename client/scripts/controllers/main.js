@@ -40,9 +40,6 @@ angular.module('birminghamParcourApp')
         }
 
       };
-      //data.coords.longitude;
-      //debugger;
-      //console.log('pos',data);
 
     });
 
@@ -57,7 +54,7 @@ angular.module('birminghamParcourApp')
 
 
     $geolocation.watchPosition({
-      timeout: 500,
+      timeout: 5000,
       maximumAge: 250,
       enableHighAccuracy: true
     });

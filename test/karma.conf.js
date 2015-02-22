@@ -34,6 +34,7 @@ module.exports = function(config) {
       'bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js',
       'bower_components/ngGeolocation/ngGeolocation.js',
       'bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.js',
+      'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
