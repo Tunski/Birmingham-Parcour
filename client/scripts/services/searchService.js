@@ -22,15 +22,15 @@
       var locations = [
         {
           message: 'Railroad Park',
-          lat: 33.533,
-          lng: -86.8086459,
-          distance: 2.5
+          lat: 33.508301,
+          lng: -86.811972,
+          distance:.44
         },
         {
           message: 'Railroad Park 2',
-          lat: 33.522,
-          lng: -86.8086459,
-          distance: 1.33
+          lat: 33.5098666,
+          lng: -86.8096099,
+          distance: .24
         }
       ];
       var results = null;
@@ -43,15 +43,15 @@
       var locations = [
         {
           message: 'Railroad Park',
-          lat: 33.533,
-          lng: -86.8086459,
-          distance: 2.5
+          lat: 33.508301,
+          lng: -86.811972,
+          distance:.44
         },
         {
           message: 'Railroad Park 2',
-          lat: 33.522,
-          lng: -86.8086459,
-          distance: 1.33
+          lat: 33.5098666,
+          lng: -86.8096099,
+          distance: .24
         }
       ];
       var results = null;

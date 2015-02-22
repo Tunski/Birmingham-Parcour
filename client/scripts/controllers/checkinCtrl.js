@@ -18,15 +18,15 @@ angular.module('birminghamParcourApp')
     $scope.nearbyList =  [
       {
         message: 'Railroad Park',
-        lat: 33.533,
-        lng: -86.8086459,
-        distance: 2.5
+        lat: 33.508301,
+        lng: -86.811972,
+        distance:.44
       },
       {
         message: 'Railroad Park 2',
-        lat: 33.522,
-        lng: -86.8086459,
-        distance: 1.33
+        lat: 33.5098666,
+        lng: -86.8096099,
+        distance: .24
       }
     ];
 
@@ -45,7 +45,8 @@ angular.module('birminghamParcourApp')
 
       modalInstance.result.then(function (selectedItem) {
         $location.path('#/');
-        toaster.pop('success', "Check In", "You have been checked in.");
+        toaster.pop('success', "Check In", "Thanks for checking in at " + selectedItem.message + ".");
+        $log.info('item',selectedItem);
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
