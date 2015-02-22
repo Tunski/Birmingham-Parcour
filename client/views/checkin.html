@@ -1,3 +1,68 @@
 
+<div class="container">
 
-<h1>{{title}}</h1>
+  <h1>{{title}}</h1>
+
+  <div class="row">
+    <div>
+      <div class="row">
+        <div class="col-md-6">
+          <p>Check in and let us know what you think.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <ul class="list-group" >
+            <li class="list-group-item"  ng-repeat="item in nearbyList">
+              {{item.message}}
+              <br/>
+              {{item.distance}} Miles Away
+              <button class="btn btn-xs btn-default pull-right" ng-click="checkIn(item)">
+                <i class="fa fa-check fa-lg"></i> Check In
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+      <h3 class="modal-title">{{selected.item.message}}</h3>
+    </div>
+    <div class="modal-body">
+      <h4>How was the trail?</h4>
+      <div class="">
+        <div class="btn-group btn-group-vertical btn-block" data-toggle="buttons">
+          <button class="btn btn-primary btn-lg btn-block">
+            <input type="radio" name="options" id="option1" ng-model="trailStatus" value="1">
+            <i class="fa fa-smile-o"></i> Good
+          </button>
+            <button class="btn btn-primary btn-lg btn-block">
+            <input type="radio" name="options" id="option2" ng-model="trailStatus" value="2">
+            <i class="fa fa-meh-o"></i> Just Ok...
+          </button>
+          <button class="btn btn-primary btn-lg btn-block">
+            <input type="radio" name="options" id="option3" ng-model="trailStatus" value="3">
+            <i class="fa fa-frown-o"></i> Bad
+          </button>
+        </div>
+      </div>
+      <h4>Any Comments?</h4>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="input-group input-group-lg" style="width: 100%;">
+            <input type="text" class="form-control" ng-model="comments" placeholder="Comments" aria-describedby="sizing-addon1">
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+      <button class="btn btn-primary" ng-click="ok()">Check In</button>
+    </div>
+  </script>
+
+</div>

@@ -44,7 +44,12 @@ angular.module('birminghamParcourApp')
           lat: data.coords.latitude,
           lng: data.coords.longitude,
           zoom: 12,
-          message: 'Your Location'
+          message: 'Your Location',
+          icon: {
+            type: 'awesomeMarker',
+            icon: 'heart',
+            markerColor: 'red'
+          }
         };
 
         searchService.searchLocation($scope.myLocation)
