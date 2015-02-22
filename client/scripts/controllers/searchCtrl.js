@@ -12,7 +12,7 @@
  * Controller of the birminghamParcourApp
  */
 angular.module('birminghamParcourApp')
-  .controller('searchCtrl', function ($scope,$geolocation,$timeout) {
+  .controller('searchCtrl', function ($scope,$geolocation,$timeout,searchService) {
 
     $scope.searchResults = [];
     $scope.searchText = null;

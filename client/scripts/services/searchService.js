@@ -10,13 +10,13 @@
 
 
     var service = {
-      search: search
+      searchText: searchText
 
     };
 
     return service;
 
-    function search(text) {
+    function searchText(text) {
 
       var results = null;
 
