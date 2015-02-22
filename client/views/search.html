@@ -14,9 +14,13 @@
 <br/>
 <div class="row">
   <tabset>
+    <tab heading="Map" select="alertMe()">
+      <div class="">
+        <leaflet center="myLocation" markers="markers" height="400"></leaflet>
+      </div>
+    </tab>
     <tab heading="List">
-      <div ng-show="searchText">
-
+      <div>
         <div class="row">
           <div class="col-md-6">
             <h4>Results: {{searchResults.length}}</h4>
@@ -31,11 +35,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </tab>
-    <tab heading="Map" select="alertMe()">
-      <div class="well">
-        <leaflet center="myLocation" markers="markers" height="300"></leaflet>
       </div>
     </tab>
   </tabset>
