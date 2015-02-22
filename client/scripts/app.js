@@ -49,7 +49,7 @@ angular
           })
           .when('/search', {
             templateUrl: 'views/checkin.html',
-            controller: 'checkinhCtrl'
+            controller: 'checkinCtrl'
           })
           .otherwise({
               redirectTo: '/'
