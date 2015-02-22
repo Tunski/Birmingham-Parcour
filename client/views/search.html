@@ -1,43 +1,48 @@
+<div class="container">
 
-<div class="row">
-  <div class="col-md-6">
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Find..." ng-model="searchText">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button" ng-click="searchCurrentLocation()">
-          <i class="fa fa-location-arrow"></i>
-        </button>
-      </span>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">Search:</span>
+        <input type="text" class="form-control" placeholder="Find..." ng-model="searchText">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" ng-click="searchCurrentLocation()">
+            <i class="fa fa-location-arrow"></i>
+          </button>
+        </span>
+      </div>
     </div>
   </div>
-</div>
-<br/>
-<div class="row">
-  <tabset>
-    <tab heading="Map" ng-click="selectTab('map')">
-      <h4>{{searchTitle}}: {{searchText}}</h4>
-      <div class="">
-        <leaflet center="myLocation" markers="markers" height="400"></leaflet>
-      </div>
-    </tab>
-    <tab heading="List" ng-click="selectTab('list')">
-      <div>
-        <div class="row">
-          <div class="col-md-6">
-            <h4>{{searchTitle}}: {{searchText}}</h4>
-          </div>
+  <br/>
+  <div class="row">
+    <tabset>
+      <tab heading="Map" ng-click="selectTab('map')">
+        <h4>{{searchTitle}}: {{searchText}}</h4>
+        <div class="">
+          <leaflet center="myLocation" markers="markers" height="400"></leaflet>
         </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="list-group">
-              <a ng-repeat="item in searchListResults" ng-click="selectItem(item)" class="list-group-item">
-                {{item.message}}
-              </a>
+      </tab>
+      <tab heading="List" ng-click="selectTab('list')">
+        <div>
+          <div class="row">
+            <div class="col-md-6">
+              <h4>{{searchTitle}}: {{searchText}}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="list-group">
+                <a ng-repeat="item in searchListResults" ng-click="selectItem(item)" class="list-group-item">
+                  {{item.message}}
+                  <br/>
+                  {{item.distance}} Miles Away
+                </a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </tab>
-  </tabset>
+      </tab>
+    </tabset>
+  </div>
+  <br/>
 </div>
-<br/>

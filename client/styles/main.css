@@ -126,3 +126,8 @@ body {
 ul.nav.navbar-nav {
   margin-left: 5px;
 }
+
+.btn-block {
+  display: block;
+  width: 100%;
+}

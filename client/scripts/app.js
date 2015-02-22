@@ -19,7 +19,8 @@ angular
     'ngTouch',
     'leaflet-directive',
     'ngGeolocation',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'toaster'
   ])
     .config(function ($routeProvider) {
         $routeProvider

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
     <link rel="stylesheet" href="bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.css" />
+    <link rel="stylesheet" href="bower_components/angularjs-toaster/toaster.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -22,7 +23,7 @@
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
+    <toaster-container></toaster-container>
     <!-- Add your site or application content here -->
     <div class="header">
       <div class="navbar navbar-default" role="navigation">
@@ -50,9 +51,9 @@
               <!--<li><a ng-href="#/about">About</a></li>-->
               <!--<li><a ng-href="#/">Contact</a></li>-->
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right hidden-sm hidden-xs">
               <li>
-                <a href="#/search"><span class="glyphicon glyphicon-search"></span> Search</a>
+                <a href="#/search"><span class="glyphicon glyphicon-search"></span> Search Nearby</a>
               </li>
             </ul>
           </div>
@@ -100,6 +101,7 @@
     <script src="bower_components/ngGeolocation/ngGeolocation.js"></script>
     <script src="bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angularjs-toaster/toaster.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

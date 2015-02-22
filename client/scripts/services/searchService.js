@@ -23,12 +23,14 @@
         {
           message: 'Railroad Park',
           lat: 33.533,
-          lng: -86.8086459
+          lng: -86.8086459,
+          distance: 2.5
         },
         {
           message: 'Railroad Park 2',
           lat: 33.522,
-          lng: -86.8086459
+          lng: -86.8086459,
+          distance: 1.33
         }
       ];
       var results = null;
@@ -42,12 +44,14 @@
         {
           message: 'Railroad Park',
           lat: 33.533,
-          lng: -86.8086459
+          lng: -86.8086459,
+          distance: 2.5
         },
         {
           message: 'Railroad Park 2',
           lat: 33.522,
-          lng: -86.8086459
+          lng: -86.8086459,
+          distance: 1.33
         }
       ];
       var results = null;
