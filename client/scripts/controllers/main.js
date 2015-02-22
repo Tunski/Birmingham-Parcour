@@ -9,12 +9,6 @@
  */
 angular.module('birminghamParcourApp')
   .controller('MainCtrl', function($scope, $rootScope, $geolocation) {
-
-    var icon = L.AwesomeMarkers.icon({
-      icon: 'coffee',
-      markerColor: 'red'
-    });
-
     $geolocation.getCurrentPosition({
       timeout: 60000
     }).then(function(data) {

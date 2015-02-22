@@ -1,3 +1,5 @@
+/* jshint latedef: false */
+
 'use strict';
 
 /**
@@ -22,8 +24,21 @@ angular.module('birminghamParcourApp')
                 checked.push($(this).attr('value'));
             });
 
-            return checked.join(",");
+            return checked.join(',');
         }
+    
+        $scope.showMap = function () {
+            var checkedResults = getCheckedResults(),
+                allResults = $scope.results.map(function (result) {
+                    return result.id;
+                });
+            $location.path('/admin/clean').search({
+                checked: checkedResults,
+                results: allResults
+            });
+        };
+
+
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
@@ -44,34 +59,34 @@ angular.module('birminghamParcourApp')
             //will be replaced by api call
             $scope.results = [
                 {
-                    name: "Trail 1",
+                    name: 'Trail 1',
                     id: 100
                 }, {
-                    name: "Trail 2",
+                    name: 'Trail 2',
                     id: 101
                 }, {
-                    name: "Trail 3",
+                    name: 'Trail 3',
                     id: 102
                 }, {
-                    name: "Trail 4",
+                    name: 'Trail 4',
                     id: 103
                 }, {
-                    name: "Trail 5",
+                    name: 'Trail 5',
                     id: 104
                 }, {
-                    name: "Trail 6",
+                    name: 'Trail 6',
                     id: 105
                 }, {
-                    name: "Trail 7",
+                    name: 'Trail 7',
                     id: 106
                 }, {
-                    name: "Trail 8",
+                    name: 'Trail 8',
                     id: 107
                 }, {
-                    name: "Trail 9",
+                    name: 'Trail 9',
                     id: 108
                 }, {
-                    name: "Trail 10",
+                    name: 'Trail 10',
                     id: 109
                 }];
         };

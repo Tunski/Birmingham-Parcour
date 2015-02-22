@@ -24,7 +24,8 @@ angular.module('birminghamParcourApp')
 
     $scope.searchCurrentLocation = function(){
       console.log('searchCurrentLocation');
-      $scope.searchText = "Current Location";
+      $scope.searchText = 'Current Location';
+
       $geolocation.getCurrentPosition({
         timeout: 60000
       }).then(function(data){
@@ -48,7 +49,7 @@ angular.module('birminghamParcourApp')
         };
       });
 
-    }
+    };
 
     $scope.selectItem = function(item){
         console.log('item selected', item);
@@ -59,4 +60,3 @@ angular.module('birminghamParcourApp')
     $scope.searchCurrentLocation();
 
   });
-
