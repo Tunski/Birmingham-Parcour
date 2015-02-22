@@ -1,6 +1,7 @@
 <div id="row">
     <div id="resultContainer" class="col-sm-3">
-       <button id="addBtn" class="btn btn-primary" style="width: 100%" ng-click="enablePlotting()">Add New</button>
+        <button id="addBtn" class="btn btn-primary" style="width: 100%" ng-click="enablePlotting()">Add New</button>
+        <button class="btn btn-danger" style="width: 100%" ng-click="archive()">Archive Selected</button>
         <ul class="list-group">
             <li class="list-group-item" ng-repeat="result in results" ng-click="itemClicked($event, result.id)" ng-class="{selected: checked.indexOf(result.id) != -1}" value="{{result.id}}">
                 {{result.name}}
@@ -8,6 +9,6 @@
         </ul>
     </div>
     <div id="mapContainer" class="col-sm-9">
-        <leaflet defaults="defaults" height="480px"></leaflet>
+        <leaflet defaults="defaults" layers="layers" markers="markers" height="480px"></leaflet>
     </div>
 </div>

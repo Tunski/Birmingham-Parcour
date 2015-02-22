@@ -9,26 +9,36 @@
  */
 angular.module('birminghamParcourApp')
     .controller('CleanCtrl',
-        function ($scope, $routeParams, leafletData) {
+        function ($scope, $routeParams, leafletData, defaultMarker) {
 
             var allResults = JSON.parse('[' + $routeParams.results + ']'),
                 layers = {},
                 layerGroup = L.featureGroup([]),
                 plottingMode = false,
                 maxIndex = -1,
+                onLayerClick,
                 onMapClick,
-                pathStart,
                 customLayer;
 
             $scope.checked = JSON.parse('[' + $routeParams.checked + ']');
-
 
             function createOnMapClick(map) {
 
                 return function (e) {
                     if (customLayer.getLatLngs().length === 0) {
-                        pathStart = L.marker(e.latlng).addTo(map);
-                        pathStart.addTo(map);
+                        $scope.markers = {
+                            mainMarker: {
+                                lat: e.latlng.lat,
+                                lng: e.latlng.lng,
+                                focus: true,
+                                draggable: false,
+                                icon: {
+                                    type: 'awesomeMarker',
+                                    icon: 'heart',
+                                    markerColor: 'red',
+                                }
+                            }
+                        };
                     }
 
                     customLayer.addLatLng(e.latlng);
@@ -76,16 +86,47 @@ angular.module('birminghamParcourApp')
                         layer.on({
                             mouseover: highlightFeature,
                             mouseout: createMouseOutFunction(layer),
-                            click: function () {
-                                map.fitBounds(layer.getBounds());
-                            }
+                            click: onLayerClick
                         });
                     }
                 };
             }
 
+            $scope.layers = {
+                baselayers: {
+                    osm: {
+                        name: 'OpenStreetMap',
+                        url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                        type: 'xyz'
+                    },
+                    grayscale: {
+                        name: 'Grayscale',
+                        url: 'http://openmapsurfer.uni-hd.de/tiles/roadsg/x={x}&y={y}&z={z}',
+                        type: 'xyz'
+                    },
+                    ocm: {
+                        name: 'OpenCycleMap',
+                        url: 'http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png',
+                        type: 'xyz'
+                    },
+                    thunderforest_outdoors: {
+                        name: 'Thunderforest Outdoors',
+                        url: 'http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png',
+                        type: 'xyz'
+                    },
+                    hikebike: {
+                        name: 'Hike & Bike Map',
+                        url: 'http://{s}.tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png',
+                        type: 'xyz'
+                    }
+                }
+            };
+
             leafletData.getMap().then(function (map) {
                 onMapClick = createOnMapClick(map);
+                onLayerClick = function (e) {
+                    map.fitBounds(e.target.getBounds());
+                };
                 $scope.results.forEach(function (result) {
 
                     layers[result.id] = L.geoJson(createPath(result.path), createStyle('red', map));
@@ -138,7 +179,7 @@ angular.module('birminghamParcourApp')
                     } else {
                         map.dragging.enable();
                         map.off('click', onMapClick);
-                        map.removeLayer(pathStart);
+                        $scope.markers = {};
                         $('#addBtn').addClass('btn-primary').removeClass('btn-warning').text('Add New');
                         plottingMode = false;
                         var points = customLayer._latlngs.map(function (coord) {
@@ -153,10 +194,29 @@ angular.module('birminghamParcourApp')
                         });
                         layerGroup.addLayer(layers[maxIndex]);
                         map.fitBounds(layerGroup.getBounds());
-                        //el.addClass("selected");
                         layers[maxIndex].addTo(map);
-                        maxIndex = maxIndex + 1;
+                        setTimeout(function () {
+                            $('.list-group-item[value=' + maxIndex + ']').addClass('selected');
+                            maxIndex = maxIndex + 1;
+                        }, 50);
                     }
+                });
+            };
+
+            $scope.archive = function () {
+                leafletData.getMap().then(function (map) {
+                    $('.selected').each(function () {
+                        $(this).addClass('hidden');
+                        var id = $(this).attr('value'),
+                            layer = layers[id];
+
+                        layerGroup.removeLayer(layer);
+                        if (layerGroup.getLayers().length) {
+                            map.fitBounds(layerGroup.getBounds());
+                        }
+                        $(this).removeClass("selected");
+                        map.removeLayer(layer);
+                    });
                 });
             };
 
