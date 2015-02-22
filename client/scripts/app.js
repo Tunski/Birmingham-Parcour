@@ -21,41 +21,56 @@ angular
     'ngGeolocation',
     'ui.bootstrap'
   ])
-    .config(function ($routeProvider) {
-        $routeProvider
-          .when('/', {
-              templateUrl: 'views/main.html',
-              controller: 'MainCtrl'
-          })
-          .when('/about', {
-              templateUrl: 'views/about.html',
-              controller: 'AboutCtrl'
-          })
-          .when('/admin/filter', {
-              templateUrl: 'views/filter.html',
-              controller: 'FilterCtrl'
-          })
-          .when('/admin/clean', {
-              templateUrl: 'views/clean.html',
-              controller: 'CleanCtrl'
-          })
-          .when('/checkin', {
-            templateUrl: 'views/checkin.html',
-            controller: 'checkinCtrl'
-          })
-          .when('/search', {
-            templateUrl: 'views/search.html',
-            controller: 'searchCtrl'
-          })
-          .otherwise({
-              redirectTo: '/'
-          });
-    });
+  .config(function($routeProvider) {
+    $routeProvider
+      .when('/', {
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl'
+      })
+      .when('/about', {
+        templateUrl: 'views/about.html',
+        controller: 'AboutCtrl'
+      })
+      .when('/admin/filter', {
+        templateUrl: 'views/filter.html',
+        controller: 'FilterCtrl'
+      })
+      .when('/admin/clean', {
+        templateUrl: 'views/clean.html',
+        controller: 'CleanCtrl'
+      })
+      .when('/checkin', {
+        templateUrl: 'views/checkin.html',
+        controller: 'checkinCtrl'
+      })
+      .when('/search', {
+        templateUrl: 'views/search.html',
+        controller: 'searchCtrl'
+      })
+      .otherwise({
+        redirectTo: '/'
+      });
+  });
 
-  angular
-    .module('birminghamParcourApp')
-    .value('defaultMarker', {
-      type: 'awesomeMarker',
-      icon: 'heart',
-      markerColor: 'red',
-    });
+angular
+  .module('birminghamParcourApp')
+  .value('defaultMarker', {
+    type: 'awesomeMarker',
+    icon: 'heart',
+    markerColor: 'red',
+  });
+
+
+angular
+  .module('birminghamParcourApp')
+  .value('defaults', {
+    'marker': {
+      'icon': {
+        'type': 'awesomeMarker',
+        'icon': 'heart',
+        'markerColor': 'red'
+      }
+    },
+    'timeout': 5000,
+    'zoom': 16
+  });

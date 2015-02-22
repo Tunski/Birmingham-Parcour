@@ -1,11 +1,32 @@
-<div class="row">
+<div class="row" ng-show="waiting">
   <div class="col-xs-6 text-center">
-    <button class="btn btn-primary btn-lg">Track</button>
+    <button class="btn btn-primary btn-lg" ng-click="waiting = false; tracking = true;">Track</button>
   </div>
   <div class="col-xs-6 text-center">
     <a class="btn btn-primary btn-lg" href="#/checkin">Checkin</a>
   </div>
 </div>
+<div class="row" ng-show="tracking">
+  <div class="col-xs-12 text-center">
+    <button class="btn btn-primary btn-lg" ng-click="tracking = false; paused = true;">Pause</button>
+  </div>
+</div>
+<div class="row" ng-show="paused">
+  <div class="col-xs-6 text-center">
+    <button class="btn btn-primary btn-lg" ng-click="paused = false; finished = true;">Finish</button>
+  </div>
+  <div class="col-xs-6 text-center">
+    <button class="btn btn-primary btn-lg" ng-click="paused = false; tracking = true;">Resume</button>
+  </div>
+</div>
+<div class="row" ng-show="finished">
+  <div class="col-xs-6 text-center">
+    <button class="btn btn-primary btn-lg" ng-click="finished = false; waiting = true;">Discard</button>
+  </div>
+  <div class="col-xs-6 text-center">
+    <button class="btn btn-primary btn-lg" ng-click="finished = false; waiting = true;">Save</button>
+  </div>
+</div>
 <div class="row marketing">
-  <leaflet center="myLocation" markers="markers" height="400"></leaflet>
+  <leaflet center="myLocation" markers="markers" paths="paths" height="400"></leaflet>
 </div>

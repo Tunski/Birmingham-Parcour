@@ -8,36 +8,20 @@
  * Controller of the birminghamParcourApp
  */
 angular.module('birminghamParcourApp')
-  .controller('MainCtrl', function($scope, $rootScope, $geolocation, defaultMarker) {
-    $geolocation.getCurrentPosition({
-      timeout: 60000
-    }).then(function(data) {
-      $scope.myLocation = {
-        lat: data.coords.latitude,
-        lng: data.coords.longitude,
-        zoom: 12
-      };
-
-      $scope.markers = {
-        mainMarker: {
-          lat: data.coords.latitude,
-          lng: data.coords.longitude,
-          focus: true,
-          draggable: false,
-          icon: {
-            type: 'awesomeMarker',
-            icon: 'heart',
-            markerColor: 'red',
-          }
-        }
-      };
-    });
-
+  .controller('MainCtrl', function($scope, $rootScope, $geolocation) {
     $scope.markers = {};
+    $scope.startTracking = false;
     $scope.myLocation = {
       'lat': 33.512,
       'lng': -86.808,
-      'zoom': 12
+      'zoom': 20
+    };
+    $scope.paths = {
+      p1: {
+        color: '#008000',
+        weight: 8,
+        latlngs: [],
+      }
     };
 
     $geolocation.watchPosition({
@@ -46,16 +30,30 @@ angular.module('birminghamParcourApp')
       enableHighAccuracy: true
     });
 
-    $scope.myCoords = $geolocation.position.coords; // this is regularly updated
-    $scope.myError = $geolocation.position.error; // this becomes truthy, and has 'code' and 'message' if an error occurs
+    $scope.$watch('waiting', function (newValue, oldValue) {
+      if (newValue) {
+        $scope.paths.p1.latlngs = [];
+      }
+    });
 
     $rootScope.$on('$geolocation.position.changed', function(event, e) {
-      $scope.myCoords = e.coords; // this is regularly updated
+      $scope.myLocation = {
+        'lat': e.coords.latitude,
+        'lng': e.coords.longitude,
+        'zoom': 20
+      };
+
+      if ($scope.tracking) {
+        $scope.paths.p1.latlngs.push({
+          lat: e.coords.latitude,
+          lng: e.coords.longitude
+        });
+      }
 
       $scope.markers = {
         mainMarker: {
-          lat: $scope.myCoords.latitude,
-          lng: $scope.myCoords.longitude,
+          lat: e.coords.latitude,
+          lng: e.coords.longitude,
           focus: true,
           draggable: false,
           icon: {
@@ -66,4 +64,9 @@ angular.module('birminghamParcourApp')
         }
       };
     });
+
+    $scope.waiting = true;
+    $scope.tracking = false;
+    $scope.paused = false;
+    $scope.finished = false;
   });
