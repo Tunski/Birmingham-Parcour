@@ -17,6 +17,7 @@ angular.module('birminghamParcourApp')
     $scope.searchListResults = [];
     $scope.searchText = null;
     $scope.markers = {};
+    $scope.selectedTabName = 'map';
     $scope.myLocation = { 'lat': 33.512, 'lng': -86.808, 'zoom': 12 };
     $scope.myCoords = $geolocation.position.coords; // this is regularly updated
     $scope.myError = $geolocation.position.error; // this becomes truthy, and has 'code' and 'message' if an error occurs
@@ -42,8 +43,16 @@ angular.module('birminghamParcourApp')
         $scope.myLocation = {
           lat: data.coords.latitude,
           lng: data.coords.longitude,
-          zoom: 12
+          zoom: 12,
+          message: 'Your Location'
         };
+
+        searchService.searchLocation($scope.myLocation)
+          .then(function(results){
+            console.log('my location search results', results);
+            $scope.results = results;
+            loadResultsOnScreen($scope.results);
+          });
 
         $scope.markers = {
           mainMarker: {
@@ -94,12 +103,14 @@ angular.module('birminghamParcourApp')
 
     var loadResultsOnScreen = function(results){
 
-        $scope.searchListResults = results;
+      $scope.searchListResults = results;
 
 
-        console.log('asdfasfda');
-        $scope.markers = results;
+      console.log('asdfasfda');
 
+      $scope.markers = results;
+
+      $scope.markers.push($scope.myLocation);
     }
 
     $scope.selectTab = function(selectTab) {
