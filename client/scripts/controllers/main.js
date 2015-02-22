@@ -40,7 +40,7 @@ angular.module('birminghamParcourApp')
 
 
     $geolocation.watchPosition({
-      timeout: 500,
+      timeout: 5000,
       maximumAge: 250,
       enableHighAccuracy: true
     });
