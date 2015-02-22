@@ -12,7 +12,7 @@
  * Controller of the birminghamParcourApp
  */
 angular.module('birminghamParcourApp')
-  .controller('searchCtrl', function ($scope,$geolocation) {
+  .controller('searchCtrl', function ($scope,$geolocation,$timeout,searchService) {
 
     $scope.searchResults = [];
     $scope.searchText = null;
@@ -21,6 +21,12 @@ angular.module('birminghamParcourApp')
     $scope.myCoords = $geolocation.position.coords; // this is regularly updated
     $scope.myError = $geolocation.position.error; // this becomes truthy, and has 'code' and 'message' if an error occurs
 
+    // This is what you will bind the filter to
+    $scope.filterText = '';
+
+    // Instantiate these variables outside the watch
+    var tempFilterText = '',
+      filterTextTimeout;
 
     $scope.searchCurrentLocation = function(){
       console.log('searchCurrentLocation');
@@ -55,6 +61,29 @@ angular.module('birminghamParcourApp')
         console.log('item selected', item);
     }
 
+
+    $scope.$watch('searchText', function (val) {
+      if (filterTextTimeout) $timeout.cancel(filterTextTimeout);
+
+      tempFilterText = val;
+      filterTextTimeout = $timeout(function() {
+        $scope.filterText = tempFilterText;
+        searchForLocations();
+      }, 1000); // delay 250 ms
+    })
+
+    var searchForLocations = function(){
+      //find locations near either the current location or the searched location
+
+      if($scope.filterText && $scope.filterText == "Current Location"){ //not the best way to do this but...
+        //search by current location
+        $scope.searchCurrentLocation();
+      } else {
+        //search by user searched stuff
+        console.log('search text', $scope.filterText);
+      }
+
+    }
 
     //init the controller with the current location
     $scope.searchCurrentLocation();

@@ -12,27 +12,10 @@
 angular.module('birminghamParcourApp')
     .controller('FilterCtrl', function ($scope, $location) {
 
-
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        }
-
-
         function showPosition(position) {
             $('#lat').val(position.coords.latitude);
             $('#long').val(position.coords.longitude);
         }
-
-        $scope.showMap = function () {
-            var checkedResults = getCheckedResults();
-            var allResults = $scope.results.map(function (result) {
-                return result.id;
-            });
-            $location.path('/admin/clean').search({
-                checked: checkedResults,
-                results: allResults
-            });
-        };
 
         function getCheckedResults() {
             var checked = [];
@@ -43,6 +26,34 @@ angular.module('birminghamParcourApp')
 
             return checked.join(',');
         }
+    
+        $scope.showMap = function () {
+            var checkedResults = getCheckedResults(),
+                allResults = $scope.results.map(function (result) {
+                    return result.id;
+                });
+            $location.path('/admin/clean').search({
+                checked: checkedResults,
+                results: allResults
+            });
+        };
+
+
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+
+        $scope.showMap = function () {
+            var checkedResults = getCheckedResults(),
+                allResults = $scope.results.map(function (result) {
+                    return result.id;
+                });
+            $location.path("/admin/clean").search({
+                checked: checkedResults,
+                results: allResults
+            });
+        };
 
         $scope.getResults = function () {
             //will be replaced by api call
