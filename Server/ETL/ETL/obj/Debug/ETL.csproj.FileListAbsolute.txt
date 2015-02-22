@@ -1,0 +1,9 @@
+C:\Users\PS\Desktop\ALHack\ETL\ETL\obj\Debug\ETL.csprojResolveAssemblyReference.cache
+C:\Users\PS\Desktop\ALHack\ETL\ETL\bin\Debug\testdata.txt
+C:\Users\PS\Desktop\ALHack\ETL\ETL\bin\Debug\ETL.exe.config
+C:\Users\PS\Desktop\ALHack\ETL\ETL\bin\Debug\ETL.exe
+C:\Users\PS\Desktop\ALHack\ETL\ETL\bin\Debug\ETL.pdb
+C:\Users\PS\Desktop\ALHack\ETL\ETL\bin\Debug\Newtonsoft.Json.dll
+C:\Users\PS\Desktop\ALHack\ETL\ETL\bin\Debug\Newtonsoft.Json.xml
+C:\Users\PS\Desktop\ALHack\ETL\ETL\obj\Debug\ETL.exe
+C:\Users\PS\Desktop\ALHack\ETL\ETL\obj\Debug\ETL.pdb
