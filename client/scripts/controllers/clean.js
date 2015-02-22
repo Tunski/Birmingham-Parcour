@@ -11,7 +11,7 @@ angular.module('birminghamParcourApp')
     .controller('CleanCtrl',
         function ($scope, $routeParams, leafletData) {
 
-            var checked = JSON.parse('[' + $routeParams.checked + ']');
+            $scope.checked = JSON.parse('[' + $routeParams.checked + ']');
             var allResults = JSON.parse('[' + $routeParams.results + ']');
             var layers = {};
 
@@ -22,6 +22,11 @@ angular.module('birminghamParcourApp')
                 $scope.results.forEach(function (result) {
 
                     layers[result.id] = L.geoJson(createPath(result.path), createStyle('red', map));
+
+                    if ($scope.checked.indexOf(result.id) != -1) {
+
+                        layers[result.id].addTo(map);
+                    }
                 });
 
             });
@@ -43,10 +48,10 @@ angular.module('birminghamParcourApp')
                     onEachFeature: function (feature, layer) {
                         layer.on({
                             mouseover: highlightFeature,
-                            mouseout: createMouseOutFunction(layer),
-                            click: function () {
-                                map.fitBounds(layer.getBounds());
-                            }
+                            mouseout: createMouseOutFunction(layer)
+//                            click: function () {
+//                                map.fitBounds(layer.getBounds());
+//                            }
                         });
                     }
                 };
@@ -80,7 +85,7 @@ angular.module('birminghamParcourApp')
                 leafletData.getMap().then(function (map) {
                     var el = $(event.currentTarget);
                     var layer = layers[id];
-                    
+
                     if (el.hasClass("selected")) {
                         el.removeClass("selected");
                         map.removeLayer(layer);
@@ -90,6 +95,31 @@ angular.module('birminghamParcourApp')
                     }
                 });
             }
+
+            var customLayer;
+            $scope.enablePlotting = function () {
+                leafletData.getMap().then(function (map) {
+                    customLayer = L.polyline([], {
+                        color: 'black'
+                    }).addTo(map);
+                    map.dragging.disable();
+                    map.on('click', createOnMapClick(map));
+                });
+            }
+
+
+            function createOnMapClick(map) {
+
+                return function (e) {
+                    if (customLayer.getLatLngs().length == 0) {
+                        L.marker(e.latlng).addTo(map);
+                    }
+
+                    customLayer.addLatLng(e.latlng);
+                    customLayer.redraw();
+                }
+            }
+
 
             function getResults(checked) {
                 //will be replaced by api call

@@ -1,8 +1,8 @@
 <div id="row">
     <div id="filterPanel" class="col-sm-3">
         Location:
-        <input type="text" class="form-control" placeholder="Latitude">
-        <input type="text" class="form-control" placeholder="Longitude">Filter By:
+        <input id="lat" type="text" class="form-control" placeholder="Latitude">
+        <input id="long" type="text" class="form-control" placeholder="Longitude">Filter By:
         <div class="checkbox">
             <input type="checkbox">Park
         </div>
@@ -25,7 +25,7 @@
         <div class="checkbox">
             <input type="checkbox" value="">Include archived routes
         </div>
-        <button class="btn btn-primary" style="width:100%">Find Results</button>
+        <button class="btn btn-primary" style="width:100%" ng-click="getResults()">Find Results</button>
     </div>
     <div id="resultContainer" class="col-sm-9">
         <button class="btn btn-success" style="width:100%" ng-click="showMap()">View On Map</button>

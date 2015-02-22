@@ -83,7 +83,7 @@ body {
 }
 
 .selected {
-    background-color: green;
+    background-color: #5cb85c;
 }
 
 .navbar-toggle-left {

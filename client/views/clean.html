@@ -1,12 +1,13 @@
 <div id="row">
     <div id="resultContainer" class="col-sm-3">
+       <button class="btn btn-primary" style="width: 100%" ng-click="enablePlotting()">Add New</button>
         <ul class="list-group">
-            <li class="list-group-item" ng-repeat="result in results" ng-click="itemClicked($event, result.id)">
+            <li class="list-group-item" ng-repeat="result in results" ng-click="itemClicked($event, result.id)" ng-class="{selected: checked.indexOf(result.id) != -1}" value="{{result.id}}">
                 {{result.name}}
             </li>
         </ul>
     </div>
     <div id="mapContainer" class="col-sm-9">
-        <leaflet defaults="defaults" height="480px" width="640px"></leaflet>
+        <leaflet defaults="defaults" height="480px"></leaflet>
     </div>
 </div>

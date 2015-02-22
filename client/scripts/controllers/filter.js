@@ -10,7 +10,16 @@
 angular.module('birminghamParcourApp')
     .controller('FilterCtrl', function ($scope, $location) {
 
-        $scope.results = getResults();
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+
+
+        function showPosition(position) {
+            $('#lat').val(position.coords.latitude);
+            $('#long').val(position.coords.longitude);
+        }
 
         $scope.showMap = function () {
             var checkedResults = getCheckedResults();
@@ -33,9 +42,9 @@ angular.module('birminghamParcourApp')
             return checked.join(",");
         }
 
-        function getResults() {
+        $scope.getResults = function () {
             //will be replaced by api call
-            return [
+            $scope.results = [
                 {
                     name: "Trail 1",
                     id: 100
