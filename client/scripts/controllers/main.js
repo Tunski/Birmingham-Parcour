@@ -8,12 +8,10 @@
  * Controller of the birminghamParcourApp
  */
 angular.module('birminghamParcourApp')
-  .controller('MainCtrl', function($scope, $rootScope, $geolocation) {
+  .controller('MainCtrl', function($scope, $rootScope, $geolocation, defaultMarker) {
     $geolocation.getCurrentPosition({
       timeout: 60000
     }).then(function(data) {
-
-      //$scope.myLocationData = data;
       $scope.myLocation = {
         lat: data.coords.latitude,
         lng: data.coords.longitude,
@@ -32,9 +30,7 @@ angular.module('birminghamParcourApp')
             markerColor: 'red',
           }
         }
-
       };
-
     });
 
     $scope.markers = {};
@@ -44,9 +40,6 @@ angular.module('birminghamParcourApp')
       'zoom': 12
     };
 
-
-
-
     $geolocation.watchPosition({
       timeout: 5000,
       maximumAge: 250,
@@ -55,14 +48,12 @@ angular.module('birminghamParcourApp')
 
     $scope.myCoords = $geolocation.position.coords; // this is regularly updated
     $scope.myError = $geolocation.position.error; // this becomes truthy, and has 'code' and 'message' if an error occurs
-    //
-    //
+
     $rootScope.$on('$geolocation.position.changed', function(event, e) {
       $scope.myCoords = e.coords; // this is regularly updated
 
       $scope.markers = {
         mainMarker: {
-
           lat: $scope.myCoords.latitude,
           lng: $scope.myCoords.longitude,
           focus: true,
@@ -73,18 +64,6 @@ angular.module('birminghamParcourApp')
             markerColor: 'red',
           }
         }
-
       };
-
-
-      //debugger;
     });
-    //
-    //$rootScope.$on('someEvent', function(event, e){ /* implementation here */ });
-    //$scope.$watch('myCoords', function(newValue, oldValue) {
-    //  //brodcastc
-    //  console.log(newValue);
-    //});
-
-
   });
