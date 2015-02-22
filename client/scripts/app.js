@@ -51,3 +51,11 @@ angular
               redirectTo: '/'
           });
     });
+
+  angular
+    .module('birminghamParcourApp')
+    .value('defaultMarker', {
+      type: 'awesomeMarker',
+      icon: 'heart',
+      markerColor: 'red',
+    });

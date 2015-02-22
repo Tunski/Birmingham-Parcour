@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
     "node": true,
     "browser": true,
     "esnext": true,
@@ -24,28 +23,3 @@
         "$": false
     }
 }
-=======
-  "node": true,
-  "browser": true,
-  "esnext": true,
-  "bitwise": true,
-  "camelcase": true,
-  "curly": true,
-  "eqeqeq": true,
-  "immed": true,
-  "indent": 2,
-  "latedef": true,
-  "newcap": true,
-  "noarg": true,
-  "quotmark": "single",
-  "undef": true,
-  "unused": true,
-  "strict": true,
-  "trailing": true,
-  "smarttabs": true,
-  "globals": {
-    "angular": false,
-    "$": false
-  }
-}
->>>>>>> 746d16150bed94defc3a9835fe3604e8b2afcb0c
