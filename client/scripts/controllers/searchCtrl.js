@@ -21,6 +21,7 @@ angular.module('birminghamParcourApp')
     $scope.myCoords = $geolocation.position.coords; // this is regularly updated
     $scope.myError = $geolocation.position.error; // this becomes truthy, and has 'code' and 'message' if an error occurs
 
+
     // This is what you will bind the filter to
     $scope.filterText = '';
 
@@ -45,14 +46,13 @@ angular.module('birminghamParcourApp')
 
         $scope.markers = {
           mainMarker: {
-
             lat: data.coords.latitude,
             lng: data.coords.longitude,
             focus: true,
             draggable: false
           }
-
         };
+
       });
 
     };
@@ -69,21 +69,40 @@ angular.module('birminghamParcourApp')
       filterTextTimeout = $timeout(function() {
         $scope.filterText = tempFilterText;
         searchForLocations();
-      }, 1000); // delay 250 ms
+      }, 1000);
     })
 
     var searchForLocations = function(){
       //find locations near either the current location or the searched location
-
+      console.log('tab', $scope.tabset);
       if($scope.filterText && $scope.filterText == "Current Location"){ //not the best way to do this but...
         //search by current location
         $scope.searchCurrentLocation();
       } else {
         //search by user searched stuff
         console.log('search text', $scope.filterText);
+        searchService.searchText($scope.filterText)
+          .then(function(results){
+            console.log('search results', results);
+            $scope.results = results;
+          });
       }
 
     }
+
+    var loadResultsOnScreen = function(results){
+      if($scope.selectedTabName == 'list'){
+        //list
+      } else if ($scope.selectedTabName == 'map') {
+        //map
+      }
+    }
+
+    $scope.selectTab = function(selectTab) {
+      $scope.selectedTabName = selectTab;
+    }
+
+
 
     //init the controller with the current location
     $scope.searchCurrentLocation();

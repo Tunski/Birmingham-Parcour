@@ -10,7 +10,8 @@
 
 
     var service = {
-      searchText: searchText
+      searchText: searchText,
+      searchLocation: searchLocation
 
     };
 
@@ -19,9 +20,16 @@
     function searchText(text) {
 
       var results = null;
+      results = [];
+      return $q.when(results);
 
-      var results = [];
-      return $q.when(settings);
+    }
+
+    function searchLocation(location){
+      var results = null;
+      results = [];
+
+      return $q.when(results);
     }
 
 

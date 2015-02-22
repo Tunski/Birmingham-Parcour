@@ -13,4 +13,10 @@
 angular.module('birminghamParcourApp')
   .controller('checkinCtrl', function ($scope) {
     $scope.title = 'Check In';
+
+
+
+
+
+
   });
