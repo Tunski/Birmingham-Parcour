@@ -8,11 +8,16 @@
  * Controller of the birminghamParcourApp
  */
 angular.module('birminghamParcourApp')
-  .controller('MainCtrl', function ($scope,$rootScope,$geolocation) {
+  .controller('MainCtrl', function($scope, $rootScope, $geolocation) {
+
+    var icon = L.AwesomeMarkers.icon({
+      icon: 'coffee',
+      markerColor: 'red'
+    });
 
     $geolocation.getCurrentPosition({
       timeout: 60000
-    }).then(function(data){
+    }).then(function(data) {
 
       //$scope.myLocationData = data;
       $scope.myLocation = {
@@ -20,13 +25,18 @@ angular.module('birminghamParcourApp')
         lng: data.coords.longitude,
         zoom: 12
       };
+
       $scope.markers = {
         mainMarker: {
-
           lat: data.coords.latitude,
           lng: data.coords.longitude,
           focus: true,
-          draggable: false
+          draggable: false,
+          icon: {
+            type: 'awesomeMarker',
+            icon: 'heart',
+            markerColor: 'red',
+          }
         }
 
       };
@@ -37,7 +47,11 @@ angular.module('birminghamParcourApp')
     });
 
     $scope.markers = {};
-    $scope.myLocation = { 'lat': 33.512, 'lng': -86.808, 'zoom': 12 };
+    $scope.myLocation = {
+      'lat': 33.512,
+      'lng': -86.808,
+      'zoom': 12
+    };
 
 
 
@@ -52,7 +66,7 @@ angular.module('birminghamParcourApp')
     $scope.myError = $geolocation.position.error; // this becomes truthy, and has 'code' and 'message' if an error occurs
     //
     //
-    $rootScope.$on('$geolocation.position.changed', function(event, e){
+    $rootScope.$on('$geolocation.position.changed', function(event, e) {
       $scope.myCoords = e.coords; // this is regularly updated
 
       $scope.markers = {
@@ -61,7 +75,12 @@ angular.module('birminghamParcourApp')
           lat: $scope.myCoords.latitude,
           lng: $scope.myCoords.longitude,
           focus: true,
-          draggable: false
+          draggable: false,
+          icon: {
+            type: 'awesomeMarker',
+            icon: 'heart',
+            markerColor: 'red',
+          }
         }
 
       };
