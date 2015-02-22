@@ -11,3 +11,7 @@ bower_components
 .idea/workspace.xml
 
 Server/ETL/ETL/App.config
+
+Server/ETL/ETL/bin
+
+Server/ETL/ETL/obj
